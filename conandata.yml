@@ -7,8 +7,12 @@ sources:
     sha256: "5102ccb57639cb355642c1f8af0d815026c948d85d99bf9b86be5746e759f8e6"
 patches:
   "1.0":
+    - patch_file: "patches/export-symbols.patch"
+      base_path: "source_subfolder"
     - patch_file: "patches/1.0/replace-vla.patch"
       base_path: "source_subfolder"
   "1.1":
+    - patch_file: "patches/export-symbols.patch"
+      base_path: "source_subfolder"
     - patch_file: "patches/1.1/fix-vla-c99loop.patch"
       base_path: "source_subfolder"

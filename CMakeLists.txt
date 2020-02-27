@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4.3)
+cmake_minimum_required(VERSION 3.0.2)
 project(quirc C)
 
 if(EXISTS "${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
@@ -21,10 +21,16 @@ add_library(quirc
 
 target_compile_definitions(quirc PRIVATE QUIRC_MAX_REGIONS=${QUIRC_MAX_REGIONS})
 
-if(WIN32 AND BUILD_SHARED_LIBS)
-  set_target_properties(quirc PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
-endif()
 set_target_properties(quirc PROPERTIES VERSION ${QUIRC_VERSION})
+
+target_include_directories(quirc PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+  $<INSTALL_INTERFACE:include>
+)
+
+set_target_properties(quirc PROPERTIES C_VISIBILITY_PRESET hidden)
+include(GenerateExportHeader)
+generate_export_header(quirc)
 
 install(
   TARGETS quirc
@@ -34,4 +40,5 @@ install(
   ARCHIVE DESTINATION lib
 )
 
-install(FILES ${QUIRC_SOURCE_DIR}/quirc.h DESTINATION include)
+set(PUBLIC_HEADERS ${QUIRC_SOURCE_DIR}/quirc.h ${QUIRC_SOURCE_DIR}/quirc_export.h)
+install(FILES ${PUBLIC_HEADERS} DESTINATION include)
