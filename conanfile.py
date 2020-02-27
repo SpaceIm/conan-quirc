@@ -46,7 +46,7 @@ class QuircConan(ConanFile):
         os.rename(self.name + "-" + self.version, self._source_subfolder)
 
     def build(self):
-        if "patches" in self.conan_data:
+        if "patches" in self.conan_data and self.version in self.conan_data["patches"]:
             for patch in self.conan_data["patches"][self.version]:
                 tools.patch(**patch)
         cmake = self._configure_cmake()
