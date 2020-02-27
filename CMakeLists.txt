@@ -40,5 +40,5 @@ install(
   ARCHIVE DESTINATION lib
 )
 
-set(PUBLIC_HEADERS ${QUIRC_SOURCE_DIR}/quirc.h ${QUIRC_SOURCE_DIR}/quirc_export.h)
+set(PUBLIC_HEADERS ${QUIRC_SOURCE_DIR}/quirc.h ${CMAKE_CURRENT_BINARY_DIR}/quirc_export.h)
 install(FILES ${PUBLIC_HEADERS} DESTINATION include)
