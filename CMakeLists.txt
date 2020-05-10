@@ -1,11 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(quirc C)
 
-if(EXISTS "${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
-  include("${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
-else()
-  include(conanbuildinfo.cmake)
-endif()
+include(conanbuildinfo.cmake)
 conan_basic_setup()
 
 set(QUIRC_MAX_REGIONS 254 CACHE STRING "Maximum number of regions")
