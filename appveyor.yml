@@ -12,7 +12,7 @@ environment:
 install:
   - set PATH=%PYTHON_HOME%;%PYTHON_HOME%/Scripts/;%PATH%
   - pip install bincrafters_package_tools
-  - conan user # It creates the conan data directory
+  - conan user
 
 build_script:
   - python build.py
